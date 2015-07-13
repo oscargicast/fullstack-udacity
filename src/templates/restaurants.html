@@ -1,0 +1,12 @@
+<html>
+<body>
+	<h1>Restaurants Guide</h1>
+	{% for r in restaurants %}
+	<div>
+		<p><a href="{{url_for('RestaurantMenu', restaurant_id=r.id)}}">
+			{{r.name}}
+		</a></p>
+  </div>
+	{% endfor %}
+</body>
+</html
