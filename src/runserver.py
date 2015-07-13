@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Restaurant, MenuItem
@@ -44,6 +44,7 @@ def NewMenuItem(restaurant_id):
         )
         session.add(new_item)
         session.commit()
+        flash("new menu item created!")
         return redirect(url_for(
             'RestaurantMenu',
             restaurant_id=restaurant_id,
@@ -96,5 +97,6 @@ def DeleteMenuItem(restaurant_id, menu_id):
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super secret key'
     app.debug = True
     app.run(host='0.0.0.0', port=8000)
